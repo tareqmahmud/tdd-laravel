@@ -3,8 +3,9 @@
 namespace Tests\Feature;
 
 use App\Models\Todo;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 class TodoTest extends TestCase
@@ -18,6 +19,10 @@ class TodoTest extends TestCase
         parent::setUp();
 
         $this->lists = Todo::factory()->count(5)->create();
+
+        $user = User::factory()->create();
+
+        Sanctum::actingAs($user);
     }
 
     public function test_todo_validation_invalid_type(): void

@@ -4,7 +4,9 @@ namespace Tests\Feature;
 
 use App\Models\Task;
 use App\Models\Todo;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 class TaskTest extends TestCase
@@ -22,6 +24,9 @@ class TaskTest extends TestCase
             'title'   => 'Task from factory',
             'todo_id' => $this->todo->id
         ]);
+
+        $user = User::factory()->create();
+        Sanctum::actingAs($user);
     }
 
     public function test_add_new_task(): void

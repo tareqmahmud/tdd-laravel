@@ -4,6 +4,8 @@ namespace Tests\Unit;
 
 use App\Models\Task;
 use App\Models\Todo;
+use App\Models\User;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 class TodoTest extends TestCase
@@ -19,7 +21,8 @@ class TodoTest extends TestCase
             'todo_id' => $this->todo->id
         ]);
 
-
+        $user = User::factory()->create();
+        Sanctum::actingAs($user);
     }
 
     public function test_todo_has_many_tasks(): void

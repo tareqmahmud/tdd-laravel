@@ -2,12 +2,14 @@
 
 namespace Tests\Feature\Auth;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class RegistrationTest extends TestCase
 {
     use WithFaker;
+    use RefreshDatabase;
 
     public function test_a_user_can_register_successfully(): void
     {
